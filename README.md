@@ -13,10 +13,10 @@
 Dans le cadre des séances *codecamp*, nous avions pour mission de produire en équipe un logiciel simple de gestion de tâches avec une interface en ligne de commande (CLI). 
 
 Le système permet de gérer des tâches avec les fonctionnalités suivantes :
-- ✅ Ajout de nouvelles tâches
-- ✅ Modification de tâches existantes
-- ✅ Suppression de tâches
-- ✅ Affichage de la liste des tâches
+- Ajout de nouvelles tâches
+- Modification de tâches existantes
+- Suppression de tâches
+- Affichage de la liste des tâches
 
 Chaque tâche possède :
 - Un **identifiant unique** (ID numérique auto-incrémenté)
@@ -114,21 +114,21 @@ Exemple de contenu de fichier :
 
 ## Fonctionnalités Implémentées
 
-- [x] **Étape 1** : Commandes de base (add, modify, rm, show)
-- [x] Gestion des erreurs (tâches non trouvées, fichiers inexistants)
-- [x] IDs auto-incrémentés
-- [x] Tri des tâches par ID lors de l'affichage
-- [x] Interface CLI intuitive avec `argparse`
-- [x] Format de fichier simple et lisible
+- Commandes de base (add, modify, rm, show)
+- Gestion des erreurs (tâches non trouvées, fichiers inexistants)
+- IDs auto-incrémentés
+- Tri des tâches par ID lors de l'affichage
+- Interface CLI intuitive avec `argparse`
+- Format de fichier simple et lisible
 
 ## Avancée du Projet
 
-**Phase 1 - Fonctionnalités de base** : ✅ **TERMINÉE**
+**Phase 1 - Fonctionnalités de base** : **TERMINÉE**
 - Toutes les commandes de base sont implémentées et fonctionnelles
 - Tests manuels réussis
 - Code respectant les spécifications du codecamp
 
-**Phase 2 - Extensions futures** : 🔄 **À VENIR**
+**Phase 2 - Extensions futures** : **À VENIR**
 - Extensions à définir selon les tirages au sort des enseignants
 
 ## Problèmes Connus
@@ -138,13 +138,13 @@ Aucun problème critique identifié à ce jour. Le système fonctionne correctem
 ## Tests
 
 Le projet a été testé manuellement avec :
-- ✅ Ajout de tâches multiples
-- ✅ Modification de tâches existantes  
-- ✅ Suppression de tâches
-- ✅ Affichage formaté des tâches
-- ✅ Gestion d'erreurs (IDs inexistants)
-- ✅ Création de nouveaux fichiers
-- ✅ Fichiers vides ou inexistants
+- Ajout de tâches multiples
+- Modification de tâches existantes  
+- Suppression de tâches
+- Affichage formaté des tâches
+- Gestion d'erreurs (IDs inexistants)
+- Création de nouveaux fichiers
+- Fichiers vides ou inexistants
 
 ## Utilisation de l'IA
 
