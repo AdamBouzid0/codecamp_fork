@@ -38,8 +38,12 @@ try:
     # === EXÉCUTION DE LA COMMANDE ===
     # Dispatch vers la fonction appropriée selon la commande
     if options.command == 'add':
+        # Parse les labels si fournis
+        labels = None
+        if hasattr(options, 'labels') and options.labels:
+            labels = [label.strip() for label in options.labels.split(",") if label.strip()]
         # Ajoute une nouvelle tâche
-        commands.add(' '.join(options.details), options.file, tasks)
+        commands.add(' '.join(options.details), options.file, tasks, labels)
         
     elif options.command == 'modify':
         # Modifie une tâche existante
@@ -50,20 +54,34 @@ try:
         commands.rm(options.id, options.file, tasks)
         
     elif options.command == 'show':
-        # Affiche toutes les tâches
-        commands.show(tasks)
+        # Affiche toutes les tâches avec filtre optionnel
+        label_filter = getattr(options, 'filter', None)
+        commands.show(tasks, label_filter)
+        
+    elif options.command == 'add-label':
+        # Ajoute un label à une tâche
+        commands.add_label(options.id, options.label, options.file, tasks)
+        
+    elif options.command == 'rm-label':
+        # Supprime un label d'une tâche
+        commands.rm_label(options.id, options.label, options.file, tasks)
+        
+    elif options.command == 'set-labels':
+        # Remplace les labels d'une tâche
+        commands.set_labels(options.id, options.labels, options.file, tasks)
         
 except FileNotFoundError:
     # === GESTION DES FICHIERS INEXISTANTS ===
     # Gère le cas où le fichier de tâches n'existe pas encore
     if options.command == 'add':
+        # Parse les labels si fournis
+        labels = None
+        if hasattr(options, 'labels') and options.labels:
+            labels = [label.strip() for label in options.labels.split(",") if label.strip()]
         # Permet d'ajouter la première tâche dans un nouveau fichier
-        commands.add(' '.join(options.details), options.file, [])
-    elif options.command == 'modify':
+        commands.add(' '.join(options.details), options.file, [], labels)
+    elif options.command in ['modify', 'rm', 'add-label', 'rm-label', 'set-labels']:
         # Impossible de modifier dans un fichier inexistant
-        print(f"Error: The file {options.file} was not found")
-    elif options.command == 'rm':
-        # Impossible de supprimer dans un fichier inexistant
         print(f"Error: The file {options.file} was not found")
     elif options.command == 'show':
         # Affiche un message approprié pour un fichier vide

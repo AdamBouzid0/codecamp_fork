@@ -12,6 +12,9 @@ Commandes disponibles:
     - modify <id> <description>: Modifie une tâche existante
     - rm <id>                 : Supprime une tâche
     - show                    : Affiche toutes les tâches
+    - add-label <id> <label>  : Ajoute un label à une tâche
+    - rm-label <id> <label>   : Supprime un label d'une tâche
+    - set-labels <id> <labels>: Remplace les labels d'une tâche
 
 Auteurs: Groupe 4 - Codecamp
 """
@@ -68,6 +71,10 @@ def create_parser():
         default=["no details"], 
         help="Description de la tâche (plusieurs mots acceptés)"
     )
+    parser_add.add_argument(
+        '--labels', 
+        help="Labels à associer à la tâche (séparés par des virgules, ex: urgent,personnel)"
+    )
     
     # === Commande MODIFY ===
     parser_modify = subparsers.add_parser(
@@ -102,6 +109,55 @@ def create_parser():
         'show', 
         help='Afficher toutes les tâches',
         description='Affiche la liste de toutes les tâches dans un tableau formaté'
+    )
+    parser_show.add_argument(
+        '--filter', 
+        help="Filtre pour n'afficher que les tâches ayant ce label"
+    )
+    
+    # === Commande ADD-LABEL ===
+    parser_add_label = subparsers.add_parser(
+        'add-label', 
+        help='Ajouter un label à une tâche',
+        description='Ajoute un label à une tâche existante'
+    )
+    parser_add_label.add_argument(
+        'id', 
+        help="ID numérique de la tâche"
+    )
+    parser_add_label.add_argument(
+        'label', 
+        help="Label à ajouter à la tâche"
+    )
+    
+    # === Commande RM-LABEL ===
+    parser_rm_label = subparsers.add_parser(
+        'rm-label', 
+        help='Supprimer un label d\'une tâche',
+        description='Supprime un label spécifique d\'une tâche existante'
+    )
+    parser_rm_label.add_argument(
+        'id', 
+        help="ID numérique de la tâche"
+    )
+    parser_rm_label.add_argument(
+        'label', 
+        help="Label à supprimer de la tâche"
+    )
+    
+    # === Commande SET-LABELS ===
+    parser_set_labels = subparsers.add_parser(
+        'set-labels', 
+        help='Remplacer les labels d\'une tâche',
+        description='Remplace tous les labels d\'une tâche par une nouvelle liste'
+    )
+    parser_set_labels.add_argument(
+        'id', 
+        help="ID numérique de la tâche"
+    )
+    parser_set_labels.add_argument(
+        'labels', 
+        help="Nouveaux labels (séparés par des virgules, ex: urgent,personnel)"
     )
     
     return parser
